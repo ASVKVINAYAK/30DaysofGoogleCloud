@@ -83,3 +83,5 @@ gcloud compute forwarding-rules create http-content-rule \
         --target-http-proxy http-lb-proxy \
         --ports 80
 gcloud compute forwarding-rules list
+
+**** Wait  for extra 10 mins to Create the website behind the HTTP load balancer and to get 100 points in lab !!!***
