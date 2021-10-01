@@ -36,6 +36,7 @@ gcloud compute instances create kraken-admin --network-interface="subnet=kraken-
 
 - **Open monitoring -> Create an alert**
 - **Configure the policy to email your email and set**
+- **This need to done by manually**
 ```bash
    Resource Type : VM Instance
    Metric : CPU utilization
