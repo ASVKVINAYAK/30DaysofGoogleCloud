@@ -2,7 +2,7 @@
 
 ## Task 1 : Create Production Environment
  - **Navigation Menu ->Compute engine ->VM instances** 
- #### SSH to kraken-jumphost -> Run
+ - **SSH to kraken-jumphost -> Run**
  
 ```bash
 cd /work/dm
@@ -25,8 +25,8 @@ cd /work/k8s
 for F in $(ls *.yaml); do kubectl create -f $F; done
 ```
 ## Task 2 : Setup the Admin instance
-#### Still in kraken-jumphost's SSH -> Run
-
+- **Still in kraken-jumphost's SSH -> Run**
+- 
 ```bash
 gcloud config set compute/zone us-east1-b
 
@@ -34,9 +34,8 @@ gcloud compute instances create kraken-admin --network-interface="subnet=kraken-
 ```
 ### Create alert
 
-#### Open monitoring
-#### Create an alert
-#### Configure the policy to email your email and set
+- **Open monitoring -> Create an alert**
+- **Configure the policy to email your email and set**
 ```bash
    Resource Type : VM Instance
    Metric : CPU utilization
@@ -47,7 +46,8 @@ gcloud compute instances create kraken-admin --network-interface="subnet=kraken-
    For : 1 minute
 ```
 ## Task 3 : Verify the Spinnaker deployment
-#### Switch to cloudshell, run
+- **Switch to cloudshell, run**
+
 ```bash
 gcloud config set compute/zone us-east1-b
 
@@ -57,17 +57,17 @@ DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" -o jsonpa
 
 kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
 ```
-#### Go to cloudshell webpreview
+- **Go to cloudshell webpreview**
 
-#### Go to applications -> sample
+- **Go to applications -> sample**
+ 
+- **Open pipelines and manually run the pipeline if it has not already running.**
 
-#### Open pipelines and manually run the pipeline if it has not already running.
+- **Approve the deployment to production.**
 
-#### Approve the deployment to production.
+- **Check the production frontend endpoint (use http, not the default https)**
 
-#### Check the production frontend endpoint (use http, not the default https)
-
-#### Back to cloudshell, run to push a change
+- **Back to cloudshell, run to push a change**
 
 ```bash
 gcloud config set compute/zone us-east1-b
@@ -83,4 +83,4 @@ git commit -a -m "change"
 git tag v1.0.1
 git push --tags
 ```
-##### This lab is done 😊
+ **This lab is done 😊
