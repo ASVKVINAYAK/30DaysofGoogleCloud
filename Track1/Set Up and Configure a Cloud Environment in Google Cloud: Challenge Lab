@@ -99,6 +99,7 @@ kubectl create secret generic cloudsql-instance-credentials \
 ## Task - 7 : Create a WordPress deployment
 
 // In editor : "wp-deployment.yaml" -> replace YOUR_SQL_INSTANCE with "griffin-dev-db".
+
 // Save.
 
 ```bash
@@ -124,6 +125,3 @@ New Member : {Username 2 from Lab instruction page}
 Role : Project -> Editor
 
 // Save.
-
-
-Congratulations.The lab is done :blush:
