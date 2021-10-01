@@ -1,7 +1,7 @@
 # Deploy and Manage Cloud Environments with Google Cloud: Challenge Lab
 
 ## Task 1 : Create Production Environment
- #### Navigation Menu ->Compute engine ->VM instances 
+ - **Navigation Menu ->Compute engine ->VM instances** 
  #### SSH to kraken-jumphost -> Run
  
 ```bash
