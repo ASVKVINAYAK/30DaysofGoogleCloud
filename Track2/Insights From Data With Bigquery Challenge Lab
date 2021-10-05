@@ -241,77 +241,57 @@ LIMIT 10
 Task - 9 : CDGR - Cumulative Daily Growth Rate-------------------------------------------------------------------------------------------------------------
 
 WITH
-
   france_cases AS (
-
   SELECT
-
     date,
-
     SUM(cumulative_confirmed) AS total_cases
-
   FROM
-
     `bigquery-public-data.covid19_open_data.covid19_open_data`
-
   WHERE
-
     country_name="France"
-
     AND date IN ('2020-01-24',
-
       '2020-05-10')
-
   GROUP BY
-
     date
-
   ORDER BY
-
     date)
-
 , summary as (
-
 SELECT
-
   total_cases AS first_day_cases,
-
   LEAD(total_cases) OVER(ORDER BY date) AS last_day_cases,
-
   DATE_DIFF(LEAD(date) OVER(ORDER BY date),date, day) AS days_diff
-
 FROM
-
   france_cases
-
 LIMIT 1
-
 )
 
 select first_day_cases, last_day_cases, days_diff, POW((last_day_cases/first_day_cases),(1/days_diff))-1 as cdgr
-
 from summary
 
 Task - 10 : Create a Datastudio report---------------------------------------------------------------------------------------------------------------------------
 
+//Copy the following code to the Query editor and then click Run.
+
 SELECT
-
   date, SUM(cumulative_confirmed) AS country_cases,
-
   SUM(cumulative_deceased) AS country_deaths
-
 FROM
-
   `bigquery-public-data.covid19_open_data.covid19_open_data`
-
 WHERE
-
   date BETWEEN '2020-03-15'
-
   AND '2020-04-30'
-
-  AND country_name ="United States of America"
-
+  AND country_name='United States of America'
 GROUP BY date
+
+
+
+1.Click on EXPLORE DATA > Explore with Data Studio.
+2.Authorize Data Studio to access BigQuery.
+3.You may fail to create a report for the first-time login of Data Studio. Click + Blank Report and accept the Terms of Service. Go back to the BigQuery page and click Explore with Data Studio again.
+4.In the new Data Studio report, select Add a chart > Time series Chart.
+5.Add country_cases and country_deaths to the Metric field.
+6.Click Save to commit the change.
+*If you fail to get the score of this task, remove all data and reports from the Datastudio console before retry.
+
 
 Congratulations, you're all done with the lab-------------------------------------------------------------------------------------------------
